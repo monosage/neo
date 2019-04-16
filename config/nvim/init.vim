@@ -11,6 +11,8 @@ let g:mapleader=','
 " Disable line numbers
 set nonumber
 
+" relative line number
+set rnu
 " Don't show last command
 set noshowcmd
 
@@ -49,74 +51,25 @@ set cmdheight=1
 " or 'The only match'
 set shortmess+=c
 
-" ============================================================================ "
-" ===                           PLUGIN SETUP                               === "
-" ============================================================================ "
 
-" Wrap in try/catch to avoid errors on initial install before plugin is available
-try
-" === Denite setup ==="
-" Use ripgrep for searching current directory for files
-" By default, ripgrep will respect rules in .gitignore
-"   --files: Print each file that would be searched (but don't search)
-"   --glob:  Include or exclues files for searching that match the given glob
-"            (aka ignore .git files)
-"
-call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
+"  ==== Reload vim config ==== "
+nmap <leader>r :source ~/.config/nvim/init.vim<CR>
 
-" Use ripgrep in place of "grep"
-call denite#custom#var('grep', 'command', ['rg'])
 
-" Custom options for ripgrep
-"   --vimgrep:  Show results with every match on it's own line
-"   --hidden:   Search hidden directories and files
-"   --heading:  Show the file name above clusters of matches from each file
-"   --S:        Search case insensitively if the pattern is all lowercase
-call denite#custom#var('grep', 'default_opts', ['--hidden', '--vimgrep', '--heading', '-S'])
+" ====== Wipe Register on vim enter ==========
+" autocmd VimEnter * WipeReg
 
-" Recommended defaults for ripgrep via Denite docs
-call denite#custom#var('grep', 'recursive_opts', [])
-call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-call denite#custom#var('grep', 'separator', ['--'])
-call denite#custom#var('grep', 'final_opts', [])
+" ======= Disable Arrow keys ================="
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
 
-" Remove date from buffer list
-call denite#custom#var('buffer', 'date_format', '')
+" ======= Past current yank workd ==========="
+"map <C-j> cw<C-r>0<ESC>
 
-" Custom options for Denite
-"   auto_resize             - Auto resize the Denite window height automatically.
-"   prompt                  - Customize denite prompt
-"   direction               - Specify Denite window direction as directly below current pane
-"   winminheight            - Specify min height for Denite window
-"   highlight_mode_insert   - Specify h1-CursorLine in insert mode
-"   prompt_highlight        - Specify color of prompt
-"   highlight_matched_char  - Matched characters highlight
-"   highlight_matched_range - matched range highlight
-let s:denite_options = {'default' : {
-\ 'auto_resize': 1,
-\ 'prompt': 'λ:',
-\ 'direction': 'rightbelow',
-\ 'winminheight': '10',
-\ 'highlight_mode_insert': 'Visual',
-\ 'highlight_mode_normal': 'Visual',
-\ 'prompt_highlight': 'Function',
-\ 'highlight_matched_char': 'Function',
-\ 'highlight_matched_range': 'Normal'
-\ }}
+" PLUGIN SETUP -------------------------------------------{{{
 
-" Loop through denite options and enable them
-function! s:profile(opts) abort
-  for l:fname in keys(a:opts)
-    for l:dopt in keys(a:opts[l:fname])
-      call denite#custom#option(l:fname, l:dopt, a:opts[l:fname][l:dopt])
-    endfor
-  endfor
-endfunction
-
-call s:profile(s:denite_options)
-catch
-  echo 'Denite not installed. It should work after running :PlugInstall'
-endtry
 
 " === Coc.nvim === "
 " use <tab> for trigger completion and navigate to next complete item
@@ -130,20 +83,45 @@ inoremap <silent><expr> <TAB>
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 
+" inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
 "Close preview window when completion is done.
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
+" Show method signatur
+autocmd FileType typescript setlocal completeopt+=menu,preview
 " === NeoSnippet === "
 " Map <C-k> as shortcut to activate snippet if available
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-xmap <C-k> <Plug>(neosnippet_expand_target)
+" imap <C-k> <Plug>(neosnippet_expand_or_jump)
+" smap <C-k> <Plug>(neosnippet_expand_or_jump)
+" xmap <C-k> <Plug>(neosnippet_expand_target)
+inoremap <silent><expr> <c-space> coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? coc#rpc#request('doKeymap', ['snippets-expand-jump','']) :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<C-n>'
+let g:coc_snippet_prev = '<C-p>'
+
 
 " Load custom snippets from snippets folder
-let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
+"let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
 
 " Hide conceal markers
-let g:neosnippet#enable_conceal_markers = 0
+"let g:neosnippet#enable_conceal_markers = 0
 
 " === NERDTree === "
 " Show hidden files/directories
@@ -152,19 +130,19 @@ let g:NERDTreeShowHidden = 1
 " Remove bookmarks and help text from NERDTree
 let g:NERDTreeMinimalUI = 1
 
-" Custom icons for expandable/expanded directories
-let g:NERDTreeDirArrowExpandable = '⬏'
-let g:NERDTreeDirArrowCollapsible = '⬎'
-
 " Hide certain files and directories from NERDTree
 let g:NERDTreeIgnore = ['^\.DS_Store$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir]]', '\.sass-cache$']
 
+let g:NERDTreeQuitOnOpen = 1
 " Wrap in try/catch to avoid errors on initial install before plugin is available
 try
 
 " === Vim airline ==== "
 " Enable extensions
-let g:airline_extensions = ['branch', 'hunks', 'coc']
+let g:airline_extensions = ['coc', 'tabline']
+
+" to enable status on top
+" let g:airline_statusline_ontop=1
 
 " Update section z to just have line number
 let g:airline_section_z = airline#section#create(['linenr'])
@@ -198,17 +176,17 @@ let g:airline_powerline_fonts = 1
 " Enable caching of syntax highlighting groups
 let g:airline_highlighting_cache = 1
 
-" Define custom airline symbols
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-
-" unicode symbols
-let g:airline_left_sep = '❮'
-let g:airline_right_sep = '❯'
-
 " Don't show git changes to current file in airline
 let g:airline#extensions#hunks#enabled=0
+
+let g:airline#extensions#tabline#fnamemod = ':t' "Show only file name
+
+" TsuQuyomi
+let g:tsuquyomi_use_local_typescript = 0
+" nvim-typescript
+let g:nvim_typescript#default_mappings = 1
+" Move to the next buffer
+nmap <C-]> :TSDef<CR>
 
 catch
   echo 'Airline not installed. It should work after running :PlugInstall'
@@ -232,9 +210,19 @@ let g:used_javascript_libs = 'underscore,requirejs,chai,jquery'
 " === Signify === "
 let g:signify_sign_delete = '-'
 
-" ============================================================================ "
-" ===                                UI                                    === "
-" ============================================================================ "
+" === Magit ======"
+let g:magit_discard_untracked_do_delete=1
+" === Splunker ==="
+set nospell
+
+"let g:enable_spelunker_vim = 1
+" Override highlight setting.
+"highlight SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=#9e9e9e
+"highlight SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline guifg=NONE
+
+"}}}
+
+" UI ------------------------------------{{{
 
 " Enable true color support
 set termguicolors
@@ -247,8 +235,10 @@ catch
   colorscheme slate
 endtry
 
+au BufReadPost *.prisma set syntax=graphql
+
 " Vim airline theme
-let g:airline_theme='space'
+"let g:airline_theme='space'
 
 " Add custom highlights in method that is executed every time a
 " colorscheme is sourced
@@ -316,22 +306,9 @@ function! Handle_Win_Enter()
     setlocal winhighlight=Normal:MarkdownError
   endif
 endfunction
+"}}}
 
-" ============================================================================ "
-" ===                             KEY MAPPINGS                             === "
-" ============================================================================ "
-
-" === Denite shorcuts === "
-"   ;         - Browser currently open buffers
-"   <leader>t - Browse list of files in current directory
-"   <leader>g - Search current directory for occurences of given term and
-"   close window if no results
-"   <leader>j - Search current directory for occurences of word under cursor
-nmap ; :Denite buffer -split=floating -winrow=1<CR>
-nmap <leader>t :Denite file/rec -split=floating -winrow=1<CR>
-nnoremap <leader>g :<C-u>Denite grep:. -no-empty -mode=normal<CR>
-nnoremap <leader>j :<C-u>DeniteCursorWord grep:. -mode=normal<CR>
-
+" KEY MAPPINGS ---------------------------------------------{{{
 " === Nerdtree shorcuts === "
 "  <leader>n - Toggle NERDTree on/off
 "  <leader>f - Opens current file location in NERDTree
@@ -342,6 +319,9 @@ nmap <leader>f :NERDTreeFind<CR>
 "   -       - PageUp
 noremap <Space> <PageDown>
 noremap - <PageUp>
+
+" Move line
+let g:move_key_modifier = 'C'
 
 " === coc.nvim === "
 nmap <silent> <leader>dd <Plug>(coc-definition)
@@ -356,11 +336,10 @@ nmap <leader>y :StripWhitespace<CR>
 "   <leader>h - Find and replace
 "   <leader>/ - Claer highlighted search terms while preserving history
 map <leader>h :%s///<left><left>
-nmap <silent> <leader>/ :nohlsearch<CR>
-
+nmap <silent> <leader>/ :nohlsearch<C
 " === Easy-motion shortcuts ==="
-"   <leader>w - Easy-motion highlights first word letters bi-directionally
-map <leader>w <Plug>(easymotion-bd-w)
+"   <leader>e - Easy-motion highlights first word letters bi-directionally
+map <leader>e <Plug>(easymotion-bd-w)
 
 " Allows you to save files you opened without write permissions via sudo
 cmap w!! w !sudo tee %
@@ -374,9 +353,147 @@ nmap <leader>z :JsDoc<CR>
 " Vim's default buffer
 vnoremap <leader>p "_dP
 
-" ============================================================================ "
-" ===                                 MISC.                                === "
-" ============================================================================ "
+let g:fzf_commits_log_options = '--graph --color=always
+  \ --format="%C(yellow)%h%C(red)%d%C(reset)
+  \ - %C(bold green)(%ar)%C(reset) %s %C(blue)<%an>%C(reset)"'
+
+nnoremap <silent> <leader>cm  :Commits<CR>
+nnoremap <silent> <leader>bc :BCommits<CR>
+"}}}
+
+" Tabs/Buffers--------------------------------------------------{{{
+""This allows buffers to be hidden if you've modified a buffer.
+""This is almost a must if you wish to use buffers in this way.
+set hidden
+
+" To open a new empty buffer
+" This replaces :tabnew which I used to bind to this mapping
+nmap <leader>T :enew<cr>
+
+" Move to the next buffer
+nmap <leader>w :bnext<CR>
+
+" Move to the previous buffer
+nmap <leader>q :bprevious<CR>
+
+" Close the current buffer and move to the previous one
+" This replicates the idea of closing a tab
+nmap <leader>c :bp <BAR> bd #<CR>
+
+" Show all open buffers and their status
+nmap <leader>bl :ls<CR>
+map Q <Nop>
+nnoremap <silent> Q :CloseBuffersMenu<CR>
+
+"}}}
+
+" Folding--------------------------------------------------{{{
+let g:tex_fold_enabled=1
+let g:vimsyn_folding='af'
+let g:xml_syntax_folding = 1
+let g:php_folding = 1
+let g:perl_fold = 1
+
+function! MyFoldText() " {{{
+    let line = getline(v:foldstart)
+
+    let nucolwidth = &fdc + &number * &numberwidth
+    let windowwidth = winwidth(0) - nucolwidth - 3
+    let foldedlinecount = v:foldend - v:foldstart
+
+    " expand tabs into spaces
+    let onetab = strpart('          ', 0, &tabstop)
+    let line = substitute(line, '\t', onetab, 'g')
+
+    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
+    let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
+    return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
+endfunction " }}}
+
+function! JavaScriptFold() "{{{
+    " syntax region foldBraces start=/{/ end=/}/ transparent fold keepend extend
+    setlocal foldmethod=syntax
+    setlocal foldlevel=99
+    echo "hello"
+    syn region foldBraces start=/{/ skip=/\(\/\/.*\)\|\(\/.*\/\)/ end=/}/ transparent fold keepend extend
+endfunction "}}}
+
+function! HTMLFold() "{{{
+    " syn sync fromstart
+    set foldmethod=syntax
+    syn region HTMLFold start=+^<\([^/?!><]*[^/]>\)\&.*\(<\1\|[[:alnum:]]\)$+ end=+^</.*[^-?]>$+ fold transparent keepend extend
+    syn match HTMLCData "<!\[CDATA\[\_.\{-}\]\]>" fold transparent extend
+    syn match HTMLCommentFold "<!--\_.\{-}-->" fold transparent extend
+endfunction "}}}
+
+set foldtext=MyFoldText()
+
+autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
+autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
+
+autocmd FileType vim setlocal fdc=1
+set foldlevel=99
+" Space to toggle folds.
+nnoremap <Space> za
+vnoremap <Space> za
+autocmd FileType vim setlocal foldmethod=marker
+autocmd FileType vim setlocal foldlevel=0
+
+au FileType html call HTMLFold()
+autocmd FileType html setlocal foldmethod=syntax
+autocmd FileType html setlocal fdl=99
+
+" autocmd FileType javascript call JavaScriptFold()
+autocmd FileType javascript,html,css,scss,typescript setlocal foldlevel=99
+autocmd FileType javascript,typescript,css,scss,json setlocal foldmethod=marker
+autocmd FileType javascript,typescript,css,scss,json setlocal foldmarker={,}
+autocmd FileType coffee setl foldmethod=indent
+autocmd FileType python setl foldmethod=indent
+" au FileType html nnoremap <buffer> <leader>F zfat
+
+" }}}
+
+" Search files Rg:--------------------------------------------------{{{
+nnoremap <C-f> :Rg<Space>
+nnoremap <C-p> :GFiles<CR>
+nnoremap <silent> <leader>m :FZFMru<CR>
+noremap <leader>. :Buffers<CR>
+
+"}}}
+
+" Indent -----------------------------------------------------{{{
+"let g:indent_guides_enable_on_vim_startup = 1
+"let g:indent_guides_auto_colors = 0
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=23
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven  ctermbg=73
+
+let g:indentLine_char_list = ['|', '¦', '┆']
+let g:indentLine_bgcolor_term = 202
+"let g:indentLine_bgcolor_gui = '#FF5F00'
+"}}}
+
+" Pretter ---------------------------------------------------{{{
+let g:prettier#exec_cmd_async = 1
+" when running at every change you may want to disable quickfix
+let g:prettier#quickfix_enabled = 0
+
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+
+let g:prettier#config#single_quote = 'true'
+let g:prettier#config#parser = 'typescript'
+
+" }}}
+
+" Git Merget tool --------------------------------------------{{{
+if &diff
+    map <leader>1 :diffget LOCAL<CR>
+    map <leader>2 :diffget BASE<CR>
+    map <leader>3 :diffget REMOTE<CR>
+endif
+" }}}
+
+" MISC -----------------------------------------------------{{{
 
 " Automaticaly close nvim if NERDTree is only thing left open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -408,3 +525,5 @@ set noswapfile
 if exists('g:loaded_webdevicons')
   call webdevicons#refresh()
 endif
+
+"}}}
