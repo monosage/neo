@@ -58,7 +58,7 @@ bind C-a send-prefix
 bind r source-file ~/.tmux.conf \; display "tmux.conf source"
 
 # Bind <prefix>- to split window horizontally
-bind - split-window -v
+bind _ split-window -v
 
 # Bind <prefix>| to split window vertically
 bind | split-window -h
@@ -70,10 +70,10 @@ bind k select-pane -U
 bind l select-pane -R
 
 # resize panes using PREFIX H, J, K, L
-bind H resize-pane -L 5
-bind J resize-pane -D 5
-bind K resize-pane -U 5
-bind L resize-pane -R 5
+bind -r H resize-pane -L 2
+bind -r J resize-pane -D 2
+bind -r K resize-pane -U 2
+bind -r L resize-pane -R 2
 
 # visual notification of activity in other windows
 setw -g monitor-activity on

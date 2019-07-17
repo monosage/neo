@@ -52,7 +52,7 @@ Plug 'Konfekt/FastFold'
 Plug 'easymotion/vim-easymotion'
 
 " Intellisense Engine
-" Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
+Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 
 " Tmux/Neovim movement integration
@@ -63,6 +63,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
 Plug 'jreybert/vimagit'
+"Plug 'Xuyuanp/nerdtree-git-plugin'
 " === Javascript Plugins === "
 " Typescript syntax highlighting
 Plug 'HerringtonDarkholme/yats.vim'
@@ -87,7 +88,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'othree/yajs.vim'
 
 " go lang
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+"Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " emmet
 Plug 'mattn/emmet-vim'
 
@@ -97,7 +98,7 @@ Plug 'scrooloose/nerdtree'
 
 " Colorscheme
 Plug 'mhartington/oceanic-next'
-
+"Plug 'dracula/vim'
 " Customized vim status line
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'

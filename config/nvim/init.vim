@@ -97,10 +97,10 @@ autocmd FileType typescript setlocal completeopt+=menu,preview
 " xmap <C-k> <Plug>(neosnippet_expand_target)
 inoremap <silent><expr> <c-space> coc#refresh()
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
+" function! s:check_back_space() abort
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~ '\s'
+" endfunction
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? coc#_select_confirm() :
@@ -117,6 +117,24 @@ let g:coc_snippet_next = '<C-n>'
 let g:coc_snippet_prev = '<C-p>'
 
 
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+xmap <leader>aap  <Plug>(coc-codeaction-selected)
+nmap <leader>aap  <Plug>(coc-codeaction-selected)
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>af  <Plug>(coc-fix-current)
+
+
+
 " Load custom snippets from snippets folder
 "let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
 
@@ -127,6 +145,7 @@ let g:coc_snippet_prev = '<C-p>'
 " Show hidden files/directories
 let g:NERDTreeShowHidden = 1
 
+let g:NERDTreeDirArrows = 1
 " Remove bookmarks and help text from NERDTree
 let g:NERDTreeMinimalUI = 1
 
@@ -134,6 +153,14 @@ let g:NERDTreeMinimalUI = 1
 let g:NERDTreeIgnore = ['^\.DS_Store$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir]]', '\.sass-cache$']
 
 let g:NERDTreeQuitOnOpen = 1
+
+let g:NERDTreeAutoDeleteBuffer = 1
+
+let g:NERDTreeQuitOnOpen = 1
+
+" Automaticaly close nvim if NERDTree is only thing left open
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 " Wrap in try/catch to avoid errors on initial install before plugin is available
 try
 
@@ -165,16 +192,16 @@ let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_er
 let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 
 " Hide the Nerdtree status line to avoid clutter
-let g:NERDTreeStatusline = ''
+"let g:NERDTreeStatusline = ''
 
 " Disable vim-airline in preview mode
-let g:airline_exclude_preview = 1
+"let g:airline_exclude_preview = 1
 
 " Enable powerline fonts
-let g:airline_powerline_fonts = 1
+"let g:airline_powerline_fonts = 1
 
 " Enable caching of syntax highlighting groups
-let g:airline_highlighting_cache = 1
+"let g:airline_highlighting_cache = 1
 
 " Don't show git changes to current file in airline
 let g:airline#extensions#hunks#enabled=0
@@ -312,6 +339,7 @@ endfunction
 " === Nerdtree shorcuts === "
 "  <leader>n - Toggle NERDTree on/off
 "  <leader>f - Opens current file location in NERDTree
+" nmap <leader>n :NERDTree<CR>
 nmap <leader>n :NERDTreeToggle<CR>
 nmap <leader>f :NERDTreeFind<CR>
 
@@ -487,16 +515,17 @@ let g:prettier#config#parser = 'typescript'
 
 " Git Merget tool --------------------------------------------{{{
 if &diff
-    map <leader>1 :diffget LOCAL<CR>
-    map <leader>2 :diffget BASE<CR>
-    map <leader>3 :diffget REMOTE<CR>
+  map <leader>1 :diffget LOCAL<CR>
+  map <leader>2 :diffget BASE<CR>
+  map <leader>3 :diffget REMOTE<CR>
 endif
 " }}}
 
-" MISC -----------------------------------------------------{{{
+" Ale --------------------------------------------------------{{{
+let g:ale_sign_column_always = 1
+" }}}
 
-" Automaticaly close nvim if NERDTree is only thing left open
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" MISC -----------------------------------------------------{{{
 
 " === Search === "
 " ignore case when searching
