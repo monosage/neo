@@ -72,3 +72,26 @@ constructor(
  public injector: Injector
 ) {}
 endsnippet
+
+
+
+
+snippet m-drop "Material Cdk drop "
+drop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    }
+  }
+
+endsnippet

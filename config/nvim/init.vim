@@ -70,6 +70,10 @@ noremap <Right> <Nop>
 
 " PLUGIN SETUP -------------------------------------------{{{
 
+" uuid setup
+let g:nuuid_no_mappings = 1
+nnoremap <Leader>u <Plug>Nuuid
+
 
 " === Coc.nvim === "
 " use <tab> for trigger completion and navigate to next complete item
@@ -336,6 +340,9 @@ endfunction
 "}}}
 
 " KEY MAPPINGS ---------------------------------------------{{{
+" Quick save
+noremap <leader>s :update<CR>
+
 " === Nerdtree shorcuts === "
 "  <leader>n - Toggle NERDTree on/off
 "  <leader>f - Opens current file location in NERDTree
@@ -503,15 +510,18 @@ let g:indentLine_bgcolor_term = 202
 " Pretter ---------------------------------------------------{{{
 let g:prettier#exec_cmd_async = 1
 " when running at every change you may want to disable quickfix
-let g:prettier#quickfix_enabled = 0
+let g:prettier#quickfix_enabled = 1
 
 let g:prettier#autoformat = 0
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
-
 let g:prettier#config#single_quote = 'true'
 let g:prettier#config#parser = 'typescript'
-
+nmap <Leader>py <Plug>(Prettier)
 " }}}
+" Ale --------------------------------------------------------{{{
+let g:ale_sign_column_always = 1
+" }}}
+
 
 " Git Merget tool --------------------------------------------{{{
 if &diff

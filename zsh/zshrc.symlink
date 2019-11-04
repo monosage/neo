@@ -5,6 +5,8 @@ export ZSH=~/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 ZSH_THEME=""
 
+alias uuid='uuidgen | tr "[:upper:]" "[:lower:]" | pbcopy && pbpaste && echo'
+
 # TMUX
 # Automatically start tmux
 ZSH_TMUX_AUTOSTART=false
@@ -103,6 +105,33 @@ fgr() {
   fi
 }
 
+kill-port() {
+  port=$1
+
+  if [[ ${#port} == 0 ]]; then
+   echo "Kills a service running on the specified port."
+   echo "usage: killport PORT"
+   exit;
+  fi
+
+  # Get everything running on this port
+  lsofcmd="lsof -i :$port"
+
+  # echo the command, and then iterate through each line of the output
+  counter=0
+  $(echo $lsofcmd) | while read -r line; do
+    counter=$((counter+1)) # We want to skip the first line, as the first line is the column headers, from lsof
+
+    if [[ $counter > 1 ]]; then
+      procname=$(echo $line | awk '{print $1}')
+      pid=$(echo $line | awk '{print $2}')
+
+      echo "Killing $procname with PID: $pid"
+      kill $pid;
+    fi
+  done
+}
+
 # Enabled zsh-autosuggestions
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
@@ -132,5 +161,17 @@ SPACESHIP_GIT_STATUS_STASHED=''
   [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
   [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
 
+# [.bash_profile]
+# Setup Golang
+GOVERSION=$(brew info go | head -n 1 | awk {'print$3'})
+export GOROOT=$(brew --prefix)/Cellar/go/$GOVERSION/libexec
+export GOPATH=$HOME/Developer/go
+export PATH=$PATH:$GOPATH/bin
+
+
 nvm use node
 
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="/usr/local/opt/ruby/bin:$PATH"

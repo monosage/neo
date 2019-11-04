@@ -18,6 +18,7 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
 
+Plug 'tpope/vim-surround'
 " === Editing Plugins === "
 " Auto reload file
 Plug 'djoshea/vim-autoread'
@@ -25,7 +26,7 @@ Plug 'djoshea/vim-autoread'
 Plug 'scrooloose/nerdcommenter'
 " Indent
 Plug 'Yggdroot/indentLine'
-
+Plug 'kburdett/vim-nuuid'
 " spell checker
 Plug 'rhysd/vim-grammarous'
 
@@ -34,7 +35,7 @@ Plug 'rhysd/vim-grammarous'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'pbogut/fzf-mru.vim'
-
+Plug 'staskjs/vim-insert-cdn'
 " Prettier
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'w0rp/ale' "Require by prettier
@@ -114,9 +115,12 @@ Plug 'matze/vim-move'
 Plug 'jiangmiao/auto-pairs'
 Plug 'Asheq/close-buffers.vim'
 
+" Faker
+Plug 'tkhren/vim-fake'
 " Markdown
 Plug 'gabrielelana/vim-markdown'
 " Initialize plugin system
 call plug#end()
 
 "}}}
+"k
