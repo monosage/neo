@@ -508,18 +508,18 @@ let g:indentLine_bgcolor_term = 202
 "}}}
 
 " Pretter ---------------------------------------------------{{{
-let g:prettier#exec_cmd_async = 1
-" when running at every change you may want to disable quickfix
-let g:prettier#quickfix_enabled = 1
+" let g:prettier#exec_cmd_async = 1
+" " when running at every change you may want to disable quickfix
+" let g:prettier#quickfix_enabled = 1
 
-let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
-let g:prettier#config#single_quote = 'true'
-let g:prettier#config#parser = 'typescript'
-nmap <Leader>py <Plug>(Prettier)
+" let g:prettier#autoformat = 0
+" " autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+" let g:prettier#config#single_quote = 'true'
+" let g:prettier#config#parser = 'typescript'
+" nmap <Leader>py <Plug>(Prettier)
 " }}}
 " Ale --------------------------------------------------------{{{
-let g:ale_sign_column_always = 1
+" let g:ale_sign_column_always = 1
 " }}}
 
 

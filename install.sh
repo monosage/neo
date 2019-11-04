@@ -9,8 +9,7 @@ echo "---------------------------------------------------------"
 echo "$(tput setaf 2)JARVIS: Checking for Homebrew installation.$(tput sgr 0)"
 echo "---------------------------------------------------------"
 brew="/usr/local/bin/brew"
-if [ -f "$brew" ]
-then
+if [ -f "$brew" ]; then
   echo "---------------------------------------------------------"
   echo "$(tput setaf 2)JARVIS: Homebrew is installed.$(tput sgr 0)"
   echo "---------------------------------------------------------"
@@ -37,16 +36,21 @@ packages=(
   "z"
 )
 
-for i in "${packages[@]}"
-do
-  brew install $i
+for i in "${packages[@]}"; do
+  if brew ls --versions $i >/dev/null; then
+    # The package is installed
+    brew upgrade $i
+  else
+    # The package is not installed
+    brew install $i
+  fi
   echo "---------------------------------------------------------"
 done
 
 echo 'export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-' >> .bash_profile
+' >>.bash_profile
 
 echo "---------------------------------------------------------"
 echo "$(tput setaf 2)JARVIS: Installing Python NeoVim client.$(tput sgr 0)"
@@ -127,6 +131,9 @@ source install/link.sh
 nvim +PlugInstall +qall
 nvim +UpdateRemotePlugins +qall
 
+nvim -c 'CocInstall -sync coc-html coc-css coc-json coc-tslint coc-tsserver coc-yaml coc-angular ReactSnippets coc-dictionary coc-tag coc-word coc-emoji coc-omni|q'
+nvim -c 'CocInstall -sync https://github.com/alDuncanson/react-hooks-snippets|q'
+
 echo "---------------------------------------------------------"
 echo "$(tput setaf 2)JARVIS: Installing Space vim-airline theme.$(tput sgr 0)"
 echo "---------------------------------------------------------"
@@ -140,6 +147,16 @@ echo "---------------------------------------------------------"
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
   ~/.tmux/plugins/tpm/scripts/install_plugins.sh
+fi
+echo "______________________________________________"
+echo "Setup coc plugins"
+echo "----------------------------------------------"
+
+# Install extensions
+mkdir -p ~/.config/coc/extensions
+cd ~/.config/coc/extensions
+if [ ! -f package.json ]; then
+  echo '{"dependencies":{}}' >package.json
 fi
 
 echo "---------------------------------------------------------"

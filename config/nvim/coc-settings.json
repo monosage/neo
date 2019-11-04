@@ -6,7 +6,15 @@
     "typescript",
     "typescriptreact",
     "json",
-    "javascriptreact"
+    "javascriptreact",
+    "css",
+    "json",
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact",
+    "scss",
+    "Markdown"
   ],
   "eslint.filetypes": [
     "javascript",
