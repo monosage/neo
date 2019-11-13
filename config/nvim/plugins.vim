@@ -38,7 +38,7 @@ Plug 'pbogut/fzf-mru.vim'
 Plug 'staskjs/vim-insert-cdn'
 " Prettier
 " Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-" Plug 'w0rp/ale' "Require by prettier
+Plug 'w0rp/ale' "Require by prettier
 
 " Trailing whitespace highlighting & automatic fixing
 Plug 'ntpeters/vim-better-whitespace'

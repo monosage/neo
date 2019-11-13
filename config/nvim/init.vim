@@ -519,7 +519,7 @@ let g:indentLine_bgcolor_term = 202
 " nmap <Leader>py <Plug>(Prettier)
 " }}}
 " Ale --------------------------------------------------------{{{
-" let g:ale_sign_column_always = 1
+let g:ale_sign_column_always = 1
 " }}}
 
 
@@ -529,10 +529,6 @@ if &diff
   map <leader>2 :diffget BASE<CR>
   map <leader>3 :diffget REMOTE<CR>
 endif
-" }}}
-
-" Ale --------------------------------------------------------{{{
-let g:ale_sign_column_always = 1
 " }}}
 
 " MISC -----------------------------------------------------{{{

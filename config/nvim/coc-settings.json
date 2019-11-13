@@ -14,6 +14,7 @@
     "javascriptreact",
     "typescriptreact",
     "scss",
+    "html",
     "Markdown"
   ],
   "eslint.filetypes": [
