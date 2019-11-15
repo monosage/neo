@@ -1,31 +1,15 @@
 {
   "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,
-  "coc.preferences.formatOnSaveFiletypes": [
-    "javascript",
-    "typescript",
-    "typescriptreact",
-    "json",
-    "javascriptreact",
-    "css",
-    "json",
-    "javascript",
-    "typescript",
-    "javascriptreact",
-    "typescriptreact",
-    "scss",
-    "html",
-    "Markdown"
-  ],
-  "eslint.filetypes": [
-    "javascript",
-    "typescript",
-    "typescriptreact",
-    "javascriptreact"
-  ],
+  "coc.preferences.formatOnSaveFiletypes": ["javascript", "typescript", "typescriptreact", "json", "javascriptreact", "typescript.tsx" ,"scss", "html","css"],
+  "css.filetypes": ["css", "less",  "scss"],
+  "eslint.filetypes": ["javascript", "typescript", "typescriptreact", "javascriptreact", "typescript.tsx"],
   "diagnostic.errorSign": "•",
   "diagnostic.warningSign": "•",
   "diagnostic.infoSign": "•",
   "snippets.userSnippetsDirectory": "~/.config/nvim/snippets",
   "typescript.preferences.importModuleSpecifier": "relative"
 }
+
+
+

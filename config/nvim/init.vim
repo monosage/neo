@@ -418,7 +418,7 @@ nmap <leader>c :bp <BAR> bd #<CR>
 " Show all open buffers and their status
 nmap <leader>bl :ls<CR>
 map Q <Nop>
-nnoremap <silent> Q :CloseBuffersMenu<CR>
+nnoremap <silent> Q :Bdelete menu<CR>
 
 "}}}
 
@@ -519,7 +519,7 @@ let g:indentLine_bgcolor_term = 202
 " nmap <Leader>py <Plug>(Prettier)
 " }}}
 " Ale --------------------------------------------------------{{{
-let g:ale_sign_column_always = 1
+" let g:ale_sign_column_always = 1
 " }}}
 
 

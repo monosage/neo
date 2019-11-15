@@ -70,7 +70,6 @@ The following are features provided by Jarvis. They all have quick keybindings t
 6. **Keyword auto-complete** - *NeoVim* and *zsh*
 
     Neovim - Automatic, asynchronous keyword completion available in the current buffer via [coc.nvim](https://github.com/neoclide/coc.nvim). It's powered by the same language server extensions as VSCode. It also supports the new "floating window" feature so you can finally have syntax highlighting in your completion windows! 
-
     <img src="https://i.imgur.com/AsXMuHA.gif" width="100%"/>
 
 	A variety of languages are supported by coc.nvim. I currently use a pretty standard set for web development that I will continue to tweak as needed.
@@ -82,7 +81,8 @@ The following are features provided by Jarvis. They all have quick keybindings t
 
 7. **Code Snippets** - *NeoVim*
 
-    Commonly used code snippets made available with a few keystrokes to reduce time and effort via [neosnippet](https://github.com/Shougo/neosnippet.vim). Snippets available via auto-complete window removes need to memorize commands. Quickly hop to relevant pieces of snippet as needed.
+    Commonly used code snippets made available with a few keystrokes to reduce time and effort via [coc-snippets](https://github.com/neoclide/coc-snippets). Snippets available via auto-complete window removes need to memorize commands. Quickly hop to relevant pieces of snippet as needed.
+    
 
     <img src="https://i.imgur.com/bz7A7CM.gif" height="400px"/>
 
@@ -121,6 +121,3 @@ This is a collection of cool tools that you might want to use.
 
 > **\*** -  Tool is installed automatically if `install.sh` script is used
 
-## Support
-
-If you find any problems or bugs, please open a new [issue](https://github.com/ctaylo21/jarvis/issues).

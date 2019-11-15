@@ -38,7 +38,7 @@ Plug 'pbogut/fzf-mru.vim'
 Plug 'staskjs/vim-insert-cdn'
 " Prettier
 " Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-Plug 'w0rp/ale' "Require by prettier
+" Plug 'w0rp/ale' "Require by prettier
 
 " Trailing whitespace highlighting & automatic fixing
 Plug 'ntpeters/vim-better-whitespace'
@@ -53,8 +53,9 @@ Plug 'Konfekt/FastFold'
 Plug 'easymotion/vim-easymotion'
 
 " Intellisense Engine
-Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+"Plug 'neoclide/coc.nvim', { 'do': 'yarn install' }
+"Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Tmux/Neovim movement integration
 Plug 'christoomey/vim-tmux-navigator'
@@ -89,7 +90,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'othree/yajs.vim'
 
 " go lang
-"Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " emmet
 Plug 'mattn/emmet-vim'
 
@@ -123,4 +124,3 @@ Plug 'gabrielelana/vim-markdown'
 call plug#end()
 
 "}}}
-"k

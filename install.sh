@@ -131,7 +131,7 @@ source install/link.sh
 nvim +PlugInstall +qall
 nvim +UpdateRemotePlugins +qall
 
-nvim -c 'CocInstall -sync coc-html coc-css coc-json coc-tslint coc-tsserver coc-yaml coc-angular ReactSnippets coc-dictionary coc-tag coc-word coc-emoji coc-omni|q'
+nvim -c 'CocInstall -sync coc-html coc-css coc-json coc-eslint coc-tsserver coc-snippets coc-yaml coc-angular ReactSnippets coc-dictionary coc-tag coc-word coc-emoji coc-omni|q'
 nvim -c 'CocInstall -sync https://github.com/alDuncanson/react-hooks-snippets|q'
 
 echo "---------------------------------------------------------"
