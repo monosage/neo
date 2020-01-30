@@ -86,8 +86,15 @@ echo "---------------------------------------------------------"
 echo "$(tput setaf 2)JARVIS: Installing system fonts.$(tput sgr 0)"
 echo "---------------------------------------------------------"
 
-brew tap caskroom/fonts
+brew tap homebrew/cask-fonts
 brew cask install font-hack-nerd-font
+
+echo "---------------------------------------------------------"
+echo "$(tput setaf 2)JARVIS: Installing vscode"
+echo "---------------------------------------------------------"
+
+brew cask install visual-studio-code
+
 
 localGit="/usr/local/bin/git"
 if ! [[ -f "$localGit" ]]; then
@@ -126,8 +133,8 @@ echo "---------------------------------------------------------"
 echo "$(tput setaf 2)JARVIS: Installing Neovim plugins and linking dotfiles.$(tput sgr 0)"
 echo "---------------------------------------------------------"
 
-source install/backup.sh
 source install/link.sh
+source install/backup.sh
 nvim +PlugInstall +qall
 nvim +UpdateRemotePlugins +qall
 
