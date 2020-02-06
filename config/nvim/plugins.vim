@@ -43,6 +43,8 @@ Plug 'staskjs/vim-insert-cdn'
 " Trailing whitespace highlighting & automatic fixing
 Plug 'ntpeters/vim-better-whitespace'
 
+Plug 'rhysd/vim-grammarous'
+
 " auto-close plugin
 Plug 'rstacruz/vim-closer'
 

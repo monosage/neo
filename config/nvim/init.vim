@@ -74,8 +74,10 @@ noremap <Right> <Nop>
 let g:nuuid_no_mappings = 1
 nnoremap <Leader>u <Plug>Nuuid
 
+" Grammer fix
+nnoremap <Leader>g <Plug>(grammarous-fixall)	
 
-" === Coc.nvim === "
+"=== Coc.nvim === "
 " use <tab> for trigger completion and navigate to next complete item
 function! s:check_back_space() abort
   let col = col('.') - 1
