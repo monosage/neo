@@ -111,6 +111,25 @@ echo "---------------------------------------------------------"
 echo "$(tput setaf 2)JARVIS: Installing oh-my-zsh.$(tput sgr 0)"
 echo "---------------------------------------------------------"
 
+echo "---------------------------------------------------------"
+echo "$(tput setaf 2)JARVIS: Installing nvm and node.$(tput sgr 0)"
+echo "---------------------------------------------------------"
+localNvm="/usr/local/Cellar/nvm/"
+
+if  ! [[ -f "$localNvm" ]]; then
+  brew install nvm 
+  mkdir ~/.nvm
+
+  echo 'export NVM_DIR="$HOME/.nvm"
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"' >> ~/.zshrc  # This loads nvm bash_completion
+else
+  echo "---------------------------------------------------------"
+  echo "$(tput setaf 2)JARVIS: nvm already installed.$(tput sgr 0)"
+  echo "---------------------------------------------------------"
+fi
+
+
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 else
