@@ -47,6 +47,27 @@ if ! [[ -f "$localGit" ]]; then
   exit 1
 fi
 
+
+
+echo "---------------------------------------------------------"
+echo "$(tput setaf 2)JARVIS: Installing nvm and node.$(tput sgr 0)"
+echo "---------------------------------------------------------"
+localNvm="/usr/local/Cellar/nvm/"
+
+if  ! [[ -f "$localNvm" ]]; then
+  brew install nvm 
+  mkdir ~/.nvm
+
+  echo 'export NVM_DIR="$HOME/.nvm"
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"' >> ~/.zshrc  # This loads nvm bash_completion
+else
+  echo "---------------------------------------------------------"
+  echo "$(tput setaf 2)JARVIS: nvm already installed.$(tput sgr 0)"
+  echo "---------------------------------------------------------"
+fi
+
+
 # Create backup folder if it doesn't exist
 mkdir -p ~/.local/share/nvim/backup
 
