@@ -3,7 +3,7 @@ export ZSH=~/.oh-my-zsh
 
 # Name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
-ZSH_THEME=""
+ZSH_THEME="spaceship"
 
 alias uuid='uuidgen | tr "[:upper:]" "[:lower:]" | pbcopy && pbpaste && echo'
 
@@ -144,7 +144,7 @@ export NVIM_TUI_ENABLE_TRUE_COLOR=1
 # Aliases
 alias vim="nvim"
 alias top="vtop --theme=wizard"
-alias ls="colorls -lA --sd"
+# alias ls="colorls -lA --sd"
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 
 source $ZSH/oh-my-zsh.sh
