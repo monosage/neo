@@ -20,6 +20,15 @@ else
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
+localGit="/usr/local/bin/git"
+if ! [[ -f "$localGit" ]]; then
+  echo "---------------------------------------------------------"
+  echo "$(tput setaf 1)JARVIS: Invalid git installation. Aborting. Please install git.$(tput sgr 0)"
+  echo "---------------------------------------------------------"
+  exit 1
+fi
+
+
 echo "---------------------------------------------------------"
 echo "$(tput setaf 2)JARVIS: Installing system packages.$(tput sgr 0)"
 echo "---------------------------------------------------------"
@@ -47,10 +56,21 @@ for i in "${packages[@]}"; do
   echo "---------------------------------------------------------"
 done
 
+echo "---------------------------------------------------------"
+echo "$(tput setaf 2)JARVIS: Setup NVM & Node.$(tput sgr 0)"
+echo "---------------------------------------------------------"
+
 echo 'export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 ' >>.bash_profile
+
+echo 'export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+' >> ~/.zshrc
+
+nvm install node
 
 echo "---------------------------------------------------------"
 echo "$(tput setaf 2)JARVIS: Installing Python NeoVim client.$(tput sgr 0)"
@@ -69,6 +89,9 @@ echo "$(tput setaf 2)JARVIS: Installing spaceship prompt$(tput sgr 0)"
 echo "---------------------------------------------------------"
 
 npm install -g spaceship-prompt
+git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
+ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+
 
 echo "---------------------------------------------------------"
 echo "$(tput setaf 2)JARVIS: Installing vim linter (vint)$(tput sgr 0)"
@@ -96,20 +119,10 @@ echo "---------------------------------------------------------"
 brew cask install visual-studio-code
 
 
-localGit="/usr/local/bin/git"
-if ! [[ -f "$localGit" ]]; then
-  echo "---------------------------------------------------------"
-  echo "$(tput setaf 1)JARVIS: Invalid git installation. Aborting. Please install git.$(tput sgr 0)"
-  echo "---------------------------------------------------------"
-  exit 1
-fi
 
 # Create backup folder if it doesn't exist
 mkdir -p ~/.local/share/nvim/backup
 
-echo "---------------------------------------------------------"
-echo "$(tput setaf 2)JARVIS: Installing oh-my-zsh.$(tput sgr 0)"
-echo "---------------------------------------------------------"
 
 echo "---------------------------------------------------------"
 echo "$(tput setaf 2)JARVIS: Installing nvm and node.$(tput sgr 0)"
@@ -129,6 +142,9 @@ else
   echo "---------------------------------------------------------"
 fi
 
+echo "---------------------------------------------------------"
+echo "$(tput setaf 2)JARVIS: Installing oh-my-zsh.$(tput sgr 0)"
+echo "---------------------------------------------------------"
 
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -152,8 +168,80 @@ echo "---------------------------------------------------------"
 echo "$(tput setaf 2)JARVIS: Installing Neovim plugins and linking dotfiles.$(tput sgr 0)"
 echo "---------------------------------------------------------"
 
-source install/link.sh
-source install/backup.sh
+echo "---------------------------------------------------------"
+echo "$(tput setaf 2)JARVIS: Backup up current files.$(tput sgr 0)"
+echo "---------------------------------------------------------"
+
+# Backup files that are provided by the Jarvis into a ~/$INSTALLDIR-backup directory
+BACKUP_DIR=$INSTALLDIR/backup
+
+set -e # Exit immediately if a command exits with a non-zero status.
+
+echo "---------------------------------------------------------"
+echo "$(tput setaf 2)JARVIS: Creating backup directory at $BACKUP_DIR.$(tput sgr 0)"
+echo "---------------------------------------------------------"
+mkdir -p $BACKUP_DIR
+
+files=("$HOME/.config/nvim" "$HOME/.zshrc" "$HOME/.tmux.conf")
+for filename in "${files[@]}"; do
+    if [ ! -L $filename ]; then
+      echo "---------------------------------------------------------"
+      echo "$(tput setaf 2)JARVIS: Backing up $filename.$(tput sgr 0)"
+      echo "---------------------------------------------------------"
+      mv $filename $BACKUP_DIR 2>/dev/null
+    else
+      echo "---------------------------------------------------------"
+      echo -e "$(tput setaf 3)JARVIS: $filename does not exist at this location or is a symlink.$(tput sgr 0)"
+      echo "---------------------------------------------------------"
+    fi
+done
+
+echo "---------------------------------------------------------"
+echo "$(tput setaf 2)JARVIS: Backup completed.$(tput sgr 0)"
+echo "---------------------------------------------------------"
+
+echo "---------------------------------------------------------"
+echo "$(tput setaf 2)JARVIS: Linking symlink files.$(tput sgr 0)"
+echo "---------------------------------------------------------"
+
+linkables=$( find -H "$INSTALLDIR" -maxdepth 3 -name '*.symlink' )
+for file in $linkables ; do
+  target="$HOME/.$( basename $file '.symlink' )"
+  if [ -e $target ]; then
+    echo "---------------------------------------------------------"
+    echo "$(tput setaf 3)JARVIS: ~${target#$HOME} already exists... Skipping.$(tput sgr 0)"
+    echo "---------------------------------------------------------"
+  else
+    echo "---------------------------------------------------------"
+    echo "$(tput setaf 2)JARVIS: Creating symlink for $file.$(tput sgr 0)"
+    echo "---------------------------------------------------------"
+    ln -s $file $target
+  fi
+done
+
+if [ ! -d $HOME/.config ]; then
+    echo "Creating ~/.config"
+    mkdir -p $HOME/.config
+fi
+
+echo "---------------------------------------------------------"
+echo "$(tput setaf 2)JARVIS: Installing config files.$(tput sgr 0)"
+echo "---------------------------------------------------------"
+
+for config in $INSTALLDIR/config/*; do
+  target=$HOME/.config/$( basename $config )
+  if [ -e $target ]; then
+    echo "---------------------------------------------------------"
+    echo "$(tput setaf 3)JARVIS: ~${target#$HOME} already exists... Skipping.$(tput sgr 0)"
+    echo "---------------------------------------------------------"
+  else
+    echo "---------------------------------------------------------"
+    echo "$(tput setaf 2)JARVIS: Creating symlink for ${config}.$(tput sgr 0)"
+    echo "---------------------------------------------------------"
+    ln -s $config $target
+  fi
+done
+
 nvim +PlugInstall +qall
 nvim +UpdateRemotePlugins +qall
 
