@@ -76,6 +76,7 @@ echo "---------------------------------------------------------"
 echo "$(tput setaf 2)JARVIS: Installing Python NeoVim client.$(tput sgr 0)"
 echo "---------------------------------------------------------"
 
+pip3 install pynvim
 pip3 install neovim
 
 echo "---------------------------------------------------------"
