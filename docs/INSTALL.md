@@ -24,7 +24,11 @@ The following tools are the only ones that are (currently) required to be instal
 
 2. Install [iTerm2 Oceanic Theme](https://github.com/mhartington/oceanic-next-iterm) - Oceanic theme for Iterm. Provides seamless UI experience between Neovim + Tmux.
 
-3. Manually update your iTerm profile to use a new font (*Knack Regular Nerd Font Complete* is added by the installation script) and colorscheme.
+3. Manually update your iTerm profile to use a new font colorscheme.
+Download fonts from https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraMono.zip
+Then Select **FiraMono Nerd Font**. **Medium**
+
+
 
 4. (Optional) Depending on your autocomplete needs with [coc.nvim](https://github.com/neoclide/coc.nvim), you will want to install the appropriate langague servers. For example, I use the following extensions:
   - [Typescript/Javascript](https://github.com/neoclide/coc-tsserver): `:CocInstall coc-tsserver`
