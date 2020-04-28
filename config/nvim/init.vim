@@ -77,6 +77,11 @@ nnoremap <Leader>u <Plug>Nuuid
 " Grammer fix
 nnoremap <Leader>g <Plug>(grammarous-fixall)	
 
+" Fugitive Conflict Resolution
+nnoremap <leader>gd :Gvdiff<CR>
+nnoremap gdh :diffget //2<CR>
+nnoremap gdl :diffget //3<CR>
+
 "=== Coc.nvim === "
 " use <tab> for trigger completion and navigate to next complete item
 function! s:check_back_space() abort
