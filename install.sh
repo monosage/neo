@@ -43,6 +43,7 @@ packages=(
   "ripgrep"
   "fzf"
   "z"
+  "bat"
 )
 
 for i in "${packages[@]}"; do
