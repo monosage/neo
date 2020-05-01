@@ -30,11 +30,15 @@ Plug 'kburdett/vim-nuuid'
 " spell checker
 Plug 'rhysd/vim-grammarous'
 
+
 " Plug 'kamykn/spelunker.vim'
-" Fuzzy finding
+" Fuzzy finding and repalce, etc......
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'pbogut/fzf-mru.vim'
+Plug 'mhinz/vim-grepper'
+
+
 Plug 'staskjs/vim-insert-cdn'
 " Prettier
 " Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
