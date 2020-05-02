@@ -12,7 +12,7 @@ let g:mapleader=','
 set nonumber
 
 " relative line number
-set rnu
+set relativenumber
 " Don't show last command
 set noshowcmd
 
