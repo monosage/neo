@@ -63,6 +63,8 @@ set shortmess+=c
 " diagnostics appear/become resolved.
 set signcolumn=yes
 
+hi Search guibg=#4F5B66 guifg=NONE
+
 "  ==== Reload vim config ==== "
 nmap <leader>r :source ~/.config/nvim/init.vim<CR>
 
