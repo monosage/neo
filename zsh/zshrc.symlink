@@ -58,6 +58,12 @@ fo() {
   [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
 
+# open all current git change files
+ogc() {
+  vim `git status --porcelain | sed -ne 's/^ M //p'`
+}
+
+
 # fh [FUZZY PATTERN] - Search in command history
 fh() {
   print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
