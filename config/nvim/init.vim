@@ -71,7 +71,7 @@ nmap <leader>r :source ~/.config/nvim/init.vim<CR>
 set termguicolors
 
 " Editor theme
-set background=dark
+"set background=dark
 try
   colorscheme OceanicNext
 catch
@@ -307,7 +307,7 @@ nnoremap <C-p> :GFiles<CR>
 nnoremap <silent> <leader>m :FZFMru<CR>
 noremap <leader>. :Buffers<CR>
 " bind K to grep word under cursor
-nnoremap F :Rg "\b<C-R><C-W>\b"
+nnoremap F :Rg "<C-R><C-W>"
 
 "===mhinz/vim-grepper===
 let g:grepper={}

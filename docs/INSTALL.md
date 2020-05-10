@@ -6,13 +6,13 @@
 
 #### Step 1: Installation script
 
-Clone Jarvis into your directory of choice and run the install script. This script will install [Homebrew](https://brew.sh/) (if it needs to) and then install all of Jarvis' dependencies.
+Clone Neo into your directory of choice and run the install script. This script will install [Homebrew](https://brew.sh/) (if it needs to) and then install all of Neo' dependencies.
 
 **Warning: This will move existing `zsh`, `tmux`, or `nvim` configurations to a backup folder inside of the installation repo.**
 
 ```
-git clone https://github.com/ctaylo21/jarvis ~/jarvis
-cd ~/jarvis
+git clone https://github.com/dimpu/neo ~/neo
+cd ~/neo
 ./install.sh
 ```
 
@@ -37,7 +37,7 @@ Then Select **FiraMono Nerd Font**. **Medium**
   - [CSS](https://github.com/neoclide/coc-css): `:CocInstall coc-css`
   - [json](https://github.com/neoclide/coc-json): `:CocInstall coc-json`
 
-5. (Optional) Install [Pecan](https://github.com/zzzeyez/Pecan) for customizable OSX header. Follow install instructions on page. For Oceanic theme, copy `jarvis/config/Pecan/style.css` into `~/Library/Application Support/Übersicht/widgets/Pecan/style.css` and refresh widget by using `Übersicht` -> `Refresh All Widgets` from native OSX menu bar.
+5. (Optional) Install [Pecan](https://github.com/zzzeyez/Pecan) for customizable OSX header. Follow install instructions on page. For Oceanic theme, copy `neo/config/Pecan/style.css` into `~/Library/Application Support/Übersicht/widgets/Pecan/style.css` and refresh widget by using `Übersicht` -> `Refresh All Widgets` from native OSX menu bar.
 
 
   ```bash
@@ -59,7 +59,7 @@ Then Select **FiraMono Nerd Font**. **Medium**
 
 ### Windows
 
-These steps currently just detail instructions for getting Neovim working in Windows with Jarvis.
+These steps currently just detail instructions for getting Neovim working in Windows with Neo.
 
 #### Step 1: Install Neovim
 
@@ -77,7 +77,7 @@ Follow the [Windows install instructions](https://github.com/neovim/neovim/wiki/
 *Note:* Cloning this repo probably isn't necessary. You only need to grab the `config/nvim/init.vim` and `config/nvim/plugins.vim` files from this repo and put them in the correct locations on your computer.
 
 1. Copy `config\nvim\init.vim` to `~\AppData\Local\nvim\init.vim ` on your computer.
-2. Copy `jarvis\config\nvim\init.vim` to `~\AppData\Local\nvim\plugins.vim` on your computer.
+2. Copy `neo\config\nvim\init.vim` to `~\AppData\Local\nvim\plugins.vim` on your computer.
 3. Open `~\AppData\Local\nvim\init.vim` and replace every instance of `~/.config/nvim/` with `~\AppData\Local\nvim\`
 4. Open Neovim (`C:\tools\neovim\Neovim\bin\nvim-qt.exe`) and run `:PlugInstall` and `:UpdateRemotePlugins`. You might need to close and re-open Neovim.
 5. Install the vim linter [vint](https://github.com/Kuniwak/vint) with `pip install vim-vint`
@@ -86,7 +86,7 @@ Follow the [Windows install instructions](https://github.com/neovim/neovim/wiki/
 
 ## Additional Manual Configuration
 
-The following configurations require manual changes outside of Jarvis.
+The following configurations require manual changes outside of Neo.
 
 ### Iterm Setup
 
@@ -98,7 +98,7 @@ These are the steps to configure your iTerm setup. Typically, I work in full-scr
 
 In iTerm, do the following:
 
-1. Load settings from folder: `Preferences` -> `General` -> `Preferences` -> `Load preferences from a custom folder or URL` and choose `<your-jarvis-directory>/iterm`
+1. Load settings from folder: `Preferences` -> `General` -> `Preferences` -> `Load preferences from a custom folder or URL` and choose `<your-neo-directory>/iterm`
 
 #### Manually Update Settings
 

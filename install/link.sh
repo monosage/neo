@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
+source ../scripts.sh
 
 echo "---------------------------------------------------------"
-echo "$(tput setaf 2)JARVIS: Linking symlink files.$(tput sgr 0)"
+jprint 2 ' Linking symlink files.'
 echo "---------------------------------------------------------"
+
 INSTALLDIR=$PWD
 
 linkables=$( find -H "$INSTALLDIR" -maxdepth 3 -name '*.symlink' )
@@ -10,11 +12,11 @@ for file in $linkables ; do
   target="$HOME/.$( basename $file '.symlink' )"
   if [ -e $target ]; then
     echo "---------------------------------------------------------"
-    echo "$(tput setaf 3)JARVIS: ~${target#$HOME} already exists... Skipping.$(tput sgr 0)"
+    jprint 3 ' ~${target#$HOME} already exists... Skipping.'
     echo "---------------------------------------------------------"
   else
     echo "---------------------------------------------------------"
-    echo "$(tput setaf 2)JARVIS: Creating symlink for $file.$(tput sgr 0)"
+    jprint 2 ' Creating symlink for $file.'
     echo "---------------------------------------------------------"
     ln -s $file $target
   fi
@@ -26,18 +28,18 @@ if [ ! -d $HOME/.config ]; then
 fi
 
 echo "---------------------------------------------------------"
-echo "$(tput setaf 2)JARVIS: Installing config files.$(tput sgr 0)"
+jprint 2 ' Installing config files.'
 echo "---------------------------------------------------------"
 
 for config in $INSTALLDIR/config/*; do
   target=$HOME/.config/$( basename $config )
   if [ -e $target ]; then
     echo "---------------------------------------------------------"
-    echo "$(tput setaf 3)JARVIS: ~${target#$HOME} already exists... Skipping.$(tput sgr 0)"
+    jprint 3 ' ~${target#$HOME} already exists... Skipping.'
     echo "---------------------------------------------------------"
   else
     echo "---------------------------------------------------------"
-    echo "$(tput setaf 2)JARVIS: Creating symlink for ${config}.$(tput sgr 0)"
+    jprint 2 ' Creating symlink for ${config}.'
     echo "---------------------------------------------------------"
     ln -s $config $target
   fi

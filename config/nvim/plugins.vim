@@ -43,6 +43,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'ntpeters/vim-better-whitespace'
 " move line
 Plug 'matze/vim-move'
+
 " Auto close pair
 " Plug 'jiangmiao/auto-pairs'
 

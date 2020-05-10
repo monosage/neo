@@ -2,7 +2,7 @@
 
 ## Commands
 
-The following are the custom commands in Jarvis and some of the most useful default ones. Each configuration 
+The following are the custom commands in Neo and some of the most useful default ones. Each configuration 
 file is carefully documented to make it easy to understand. Many default commands for each tool may not be listed.
 
 ### Neovim Commands

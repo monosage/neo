@@ -8,7 +8,7 @@
   <img src="https://img.shields.io/badge/Editor-neovim-brightgreen.svg" />
 </div>
 
- <h1 align="center">Jarvis</h1>
+ <h1 align="center">Neo</h1>
 
 <div align="center">
   <strong>(Neo)Vim of the Future</strong>
@@ -23,7 +23,7 @@
 </div>
 
 <div align="center">
-  <img src="https://i.imgur.com/2rqF24f.png" alt="Jarvis SS"/>
+  <img src="https://i.imgur.com/2rqF24f.png" alt="Neo SS"/>
 </div>
 <br/>
 
@@ -35,7 +35,7 @@
 
 ## Features
 
-The following are features provided by Jarvis. They all have quick keybindings to make them quick and easy to use.
+The following are features provided by Neo. They all have quick keybindings to make them quick and easy to use.
 
 1. **Quick-open files** - *zsh* & *NeoVim*
 
@@ -94,7 +94,7 @@ The following are features provided by Jarvis. They all have quick keybindings t
 
 ## Installation
 
-Neovim is supported across multiple platforms. Some tools used by Jarvis are not, however. For MacOSX, an installation script is included
+Neovim is supported across multiple platforms. Some tools used by Neo are not, however. For MacOSX, an installation script is included
 that will install several tools for you. For Windows, no installation script is available, but you can manually install everything
 needed for Neovim in a few short steps.
 
