@@ -55,8 +55,6 @@ let g:move_key_modifier = 'C'
 "Plug 'christoomey/vim-tmux-navigator'
 
 Plug 'liuchengxu/vista.vim'
-"File Explorer (This use defalt vim netrw)
-Plug 'tpope/vim-vinegar'
 
 " Code folding
 Plug 'Konfekt/FastFold'
