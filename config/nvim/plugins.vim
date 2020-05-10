@@ -43,7 +43,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'ntpeters/vim-better-whitespace'
 " move line
 Plug 'matze/vim-move'
-
+let g:move_key_modifier = 'C'
 " Auto close pair
 " Plug 'jiangmiao/auto-pairs'
 
@@ -52,8 +52,9 @@ Plug 'matze/vim-move'
 "=== Project ==="
 
 " Tmux/Neovim movement integration
-Plug 'christoomey/vim-tmux-navigator'
+"Plug 'christoomey/vim-tmux-navigator'
 
+Plug 'liuchengxu/vista.vim'
 "File Explorer (This use defalt vim netrw)
 Plug 'tpope/vim-vinegar'
 
@@ -68,7 +69,7 @@ let g:coc_global_extensions = ['coc-eslint', 'coc-tsserver', 'coc-emmet', 'coc-c
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'pbogut/fzf-mru.vim'
-Plug 'mhinz/vim-grepper'
+Plug 'brooth/far.vim'
 
 " Git
 Plug 'mhinz/vim-signify'
@@ -79,9 +80,8 @@ Plug 'samoshkin/vim-mergetool'
 "Buffer
 Plug 'Asheq/close-buffers.vim'
 
-" Multiline select
+" Multiline select <C-n>
 Plug 'terryma/vim-multiple-cursors'
-
 
 "=== Languages ==="
 

@@ -1,9 +1,6 @@
 #!/bin/sh
 source ./scripts.sh
 
-
-
-
 echo "---------------------------------------------------------"
 jprint 2 'Greetings. Preparing to power up and begin diagnostics.'
 echo "---------------------------------------------------------"
@@ -15,7 +12,6 @@ echo "---------------------------------------------------------"
 jprint 2  'Checking for Homebrew installation.'
 echo "---------------------------------------------------------"
 brew="/usr/local/bin/brew"
-
 
 if [ -f "$brew" ]; then
   echo "---------------------------------------------------------"
