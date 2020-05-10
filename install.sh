@@ -1,11 +1,15 @@
 #!/bin/sh
 source ./scripts.sh
 
+
+
+
 echo "---------------------------------------------------------"
 jprint 2 'Greetings. Preparing to power up and begin diagnostics.'
 echo "---------------------------------------------------------"
 
 INSTALLDIR=$PWD
+
 
 echo "---------------------------------------------------------"
 jprint 2  'Checking for Homebrew installation.'
@@ -50,7 +54,7 @@ packages=(
 )
 
 for i in "${packages[@]}"; do
-  if brew ls --versions $i >/dev/null; then
+  if brew ls --versions $i > /dev/null; then
     # The package is installed
     brew upgrade $i
   else
@@ -64,15 +68,12 @@ echo "---------------------------------------------------------"
 jprint 2  'Setup NVM & Node.'
 echo "---------------------------------------------------------"
 
-echo 'export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-' >>.bash_profile
+export NVM_DIR="$HOME/.nvm"
+source /usr/local/opt/nvm/nvm.sh
+source /usr/local/opt/nvm/nvm.sh
+source /usr/local/opt/nvm/etc/bash_completion.d/nvm
+source /usr/local/opt/nvm/etc/bash_completion.d/nvm
 
-echo 'export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-' >> ~/.zshrc
 
 nvm install node
 
@@ -121,24 +122,6 @@ brew cask install font-hack-nerd-font
 mkdir -p ~/.local/share/nvim/backup
 
 echo "---------------------------------------------------------"
-jprint 2  'Installing nvm and node.'
-echo "---------------------------------------------------------"
-localNvm="/usr/local/Cellar/nvm/"
-
-if  ! [[ -f "$localNvm" ]]; then
-  brew install nvm
-  mkdir ~/.nvm
-
-  echo 'export NVM_DIR="$HOME/.nvm"
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"' >> ~/.zshrc  # This loads nvm bash_completion
-else
-  echo "---------------------------------------------------------"
-  jprint 2  'nvm already installed.'
-  echo "---------------------------------------------------------"
-fi
-
-echo "---------------------------------------------------------"
 jprint 2  'Installing oh-my-zsh.'
 echo "---------------------------------------------------------"
 
@@ -166,11 +149,10 @@ echo "---------------------------------------------------------"
 
 # Backup files that are provided by the Neo into a ~/$INSTALLDIR-backup directory
 BACKUP_DIR=$INSTALLDIR/backup
-
 set -e # Exit immediately if a command exits with a non-zero status.
 
 echo "---------------------------------------------------------"
-jprint 2  'Creating backup directory at $BACKUP_DIR.'
+jprint 2  "Creating backup directory at $BACKUP_DIR."
 echo "---------------------------------------------------------"
 mkdir -p $BACKUP_DIR
 
@@ -183,7 +165,7 @@ for filename in "${files[@]}"; do
       mv $filename $BACKUP_DIR 2>/dev/null
     else
       echo "---------------------------------------------------------"
-      jprint 2 $filename. 'does not exist at this location or is a symlink.'
+      jprint 2 "$filename does not exist at this location or is a symlink."
       echo "---------------------------------------------------------"
     fi
 done

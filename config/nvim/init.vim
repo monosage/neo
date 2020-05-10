@@ -355,11 +355,14 @@ endfunction
 "}}}
 
 "FileExplorer --------------------------{{{
-let g:netrw_banner = 0
-let g:netrw_liststyle = 0
-let g:netrw_browse_split = 4
-let g:netrw_altv = 1
-let g:netrw_winsize = 25
+nmap <leader>f :CocCommand explorer --quit-on-open <CR>
+nmap <leader>n :CocCommand explorer  --quit-on-open <CR>
+
+"let g:netrw_banner = 0
+"let g:netrw_liststyle = 0
+"let g:netrw_browse_split = 4
+"let g:netrw_altv = 1
+"let g:netrw_winsize = 25
 " augroup ProjectDrawer
 "   autocmd!
 "   autocmd VimEnter * :Vexplore
@@ -367,20 +370,20 @@ let g:netrw_winsize = 25
 
 " Hit enter in the file browser to open the selected
 " file with :vsplit to the right of the browser.
-let g:netrw_browse_split = 4
-let g:netrw_altv = 1
+"let g:netrw_browse_split = 4
+"let g:netrw_altv = 1
 
-function! s:close_explorer_buffers()
-    for i in range(1, bufnr('$'))
-        if getbufvar(i, '&filetype') == "netrw"
-            silent exe 'bdelete! ' . i
-        endif
-    endfor
-endfunction
+"function! s:close_explorer_buffers()
+    "for i in range(1, bufnr('$'))
+        "if getbufvar(i, '&filetype') == "netrw"
+            "silent exe 'bdelete! ' . i
+        "endif
+    "endfor
+"endfunction
 
-nnoremap <leader>n :call <sid>close_explorer_buffers()<cr>
-nmap <leader>f :Vexplore<CR>
+"nnoremap <leader>n :call <sid>close_explorer_buffers()<cr>
+"nmap <leader>f :Vexplore<CR>
 
-let g:netrw_fastbrowse = 0
+"let g:netrw_fastbrowse = 0
 
 "}}}
