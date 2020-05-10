@@ -43,22 +43,17 @@ Plug 'easymotion/vim-easymotion'
 Plug 'ntpeters/vim-better-whitespace'
 " move line
 Plug 'matze/vim-move'
-let g:move_key_modifier = 'C'
 " Auto close pair
-" Plug 'jiangmiao/auto-pairs'
+Plug 'jiangmiao/auto-pairs'
 
 
 
 "=== Project ==="
 
 " Tmux/Neovim movement integration
-"Plug 'christoomey/vim-tmux-navigator'
-
 Plug 'liuchengxu/vista.vim'
-
 " Code folding
 Plug 'Konfekt/FastFold'
-
 " Intellisense Engine
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = ['coc-eslint', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier', 'coc-explorer']
@@ -77,16 +72,12 @@ Plug 'samoshkin/vim-mergetool'
 
 "Buffer
 Plug 'Asheq/close-buffers.vim'
-
 " Multiline select <C-n>
 Plug 'terryma/vim-multiple-cursors'
 
 "=== Languages ==="
-
 "TypeScript & JavaScript
 Plug 'HerringtonDarkholme/yats.vim'
-
-
 "HTML & CSS
 Plug 'mattn/emmet-vim'
 
