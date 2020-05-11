@@ -17,6 +17,8 @@ config/coc/history.json
 config/devcert
 config/gatsby
 config/yarn
+config/configstore
+config/gcloud/
 
 backup/
 *.log
