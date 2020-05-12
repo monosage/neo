@@ -11,11 +11,8 @@ let g:mapleader=','
 " Yank and paste with the system clipboard
 set clipboard=unnamed
 
-" Disable line numbers
-set nonumber
-
 " relative line number
-set relativenumber
+set number relativenumber
 
 " TextEdit might fail if hidden is not set.
 set hidden
