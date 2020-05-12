@@ -1,4 +1,7 @@
 {
+
+  "tabnine.shortcut":"TN",
+  "tabnine.triggers":[],
   "coc.preferences.hoverTarget": "preview",
   "coc.preferences.enableFloatHighlight": true,
   "coc.preferences.snippetStatusText": "Ⓢ ",

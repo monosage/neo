@@ -120,6 +120,8 @@ noremap <leader>p :Format<CR>
 
 " PLUGIN SETUP -------------------------------------------{{{
 
+" === vim-move === "
+let g:move_key_modifier = 'C'
 " === vim-better-whitespace === "
 "   <leader>y - Automatically remove trailing whitespace
 nmap <leader>y :StripWhitespace<CR>
@@ -146,14 +148,16 @@ endfunction
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
+"inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
 " <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
-" if exists('*complete_info')
-"   inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-" else
-"   inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" endif
+ "if exists('*complete_info')
+   "inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+ "else
+   "inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+ "endif
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -304,11 +308,11 @@ nnoremap <C-p> :GFiles<CR>
 nnoremap <silent> <leader>m :FZFMru<CR>
 noremap <leader>. :Buffers<CR>
 " bind K to grep word under cursor
-nnoremap F :Rg "<C-R><C-W>"
+nnoremap F :Rg <C-R><C-W>
 
 "===brooth/far.vim===
-nnoremap <Leader>fr :Far<Space>
-vnoremap <Leader>fr :Far<Space>
+nnoremap <Leader>fr :Far <C-R><C-W>
+vnoremap <Leader>fr :Far <C-R><C-W>
 
 " === Type z/ to toggle highlighting on/off === "
 nnoremap z/ :if AutoHighlightToggle()<Bar>set hls<Bar>endif<CR>
@@ -317,7 +321,7 @@ function! AutoHighlightToggle()
   if exists('#auto_highlight')
     au! auto_highlight
     augroup! auto_highlight
-    setl updatetime=4000
+    setl updatetime=100
     echo 'Highlight current word: off'
     return 0
   else
@@ -325,7 +329,7 @@ function! AutoHighlightToggle()
       au!
       au CursorHold * let @/ = '\V\<'.escape(expand('<cword>'), '\').'\>'
     augroup end
-    setl updatetime=500
+    setl updatetime=100
     echo 'Highlight current word: ON'
     return 1
   endif

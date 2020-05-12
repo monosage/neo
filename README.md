@@ -19,11 +19,10 @@
 <br/>
 
 <div align="center">
-  <img src="https://i.redditmedia.com/5hM6ZNO1nVaGShnp78BRFuGtXcnDDNftA-7cc6aINFI.png?s=10cc17271fc5823361cb4e238183fc1b" />
+ 
 </div>
 
 <div align="center">
-  <img src="https://i.imgur.com/2rqF24f.png" alt="Neo SS"/>
 </div>
 <br/>
 
