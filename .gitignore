@@ -11,9 +11,7 @@ node_modules/
 vimrc.local
 config/nvim/plugged
 config/nvim/autoload/plug.vim
-config/coc/commands
-config/coc/mru
-config/coc/history.json
+config/coc
 config/devcert
 config/gatsby
 config/yarn

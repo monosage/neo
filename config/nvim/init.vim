@@ -120,6 +120,8 @@ noremap <leader>p :Format<CR>
 
 " PLUGIN SETUP -------------------------------------------{{{
 
+" === vim-move === "
+let g:move_key_modifier = 'C'
 " === vim-better-whitespace === "
 "   <leader>y - Automatically remove trailing whitespace
 nmap <leader>y :StripWhitespace<CR>
@@ -304,11 +306,11 @@ nnoremap <C-p> :GFiles<CR>
 nnoremap <silent> <leader>m :FZFMru<CR>
 noremap <leader>. :Buffers<CR>
 " bind K to grep word under cursor
-nnoremap F :Rg "<C-R><C-W>"
+nnoremap F :Rg <C-R><C-W>
 
 "===brooth/far.vim===
-nnoremap <Leader>fr :Far<Space>
-vnoremap <Leader>fr :Far<Space>
+nnoremap <Leader>fr :Far <C-R><C-W>
+vnoremap <Leader>fr :Far <C-R><C-W>
 
 " === Type z/ to toggle highlighting on/off === "
 nnoremap z/ :if AutoHighlightToggle()<Bar>set hls<Bar>endif<CR>
