@@ -9,14 +9,11 @@ tmp/*
 node_modules/
 
 vimrc.local
-config/nvim/plugged
-config/nvim/autoload/plug.vim
-config/coc
-config/devcert
-config/gatsby
-config/yarn
-config/configstore
-config/gcloud/
+config
+config/
+config/*
+!config/nvim
+!config/Pecan
 
 backup/
 *.log
