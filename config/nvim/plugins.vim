@@ -44,7 +44,7 @@ Plug 'ntpeters/vim-better-whitespace'
 " move line
 Plug 'matze/vim-move'
 " Auto close pair
-Plug 'jiangmiao/auto-pairs'
+"Plug 'jiangmiao/auto-pairs'
 
 
 
@@ -56,9 +56,8 @@ Plug 'liuchengxu/vista.vim'
 Plug 'Konfekt/FastFold'
 " Intellisense Engine
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-let g:coc_global_extensions = ['coc-eslint', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier', 'coc-explorer']
+let g:coc_global_extensions = ['coc-tabnine','coc-eslint', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier', 'coc-explorer']
 
-" Search
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'pbogut/fzf-mru.vim'
