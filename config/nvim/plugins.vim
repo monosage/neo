@@ -56,7 +56,7 @@ Plug 'liuchengxu/vista.vim'
 Plug 'Konfekt/FastFold'
 " Intellisense Engine
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-let g:coc_global_extensions = ['coc-tabnine','coc-eslint', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier', 'coc-explorer']
+let g:coc_global_extensions = ['coc-tabnine','coc-eslint','coc-git','coc-jest','coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier', 'coc-explorer']
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
