@@ -57,6 +57,7 @@ Plug 'Konfekt/FastFold'
 " Intellisense Engine
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = [
+        \'coc-git',
         \'coc-snippets',
         \'coc-tabnine',
         \'coc-eslint',
