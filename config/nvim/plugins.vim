@@ -99,6 +99,8 @@ Plug 'HerringtonDarkholme/yats.vim'
 "HTML & CSS
 Plug 'mattn/emmet-vim'
 
+"=== Games ==="
+Plug 'ThePrimeagen/vim-be-good'
 
 call plug#end()
 
