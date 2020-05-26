@@ -49,6 +49,7 @@ Plug 'matze/vim-move'
 
 
 "=== Project ==="
+Plug 'thaerkh/vim-workspace'
 
 " Tmux/Neovim movement integration
 Plug 'liuchengxu/vista.vim'
