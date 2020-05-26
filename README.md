@@ -1,5 +1,4 @@
  <div align="center">
-  <!-- PR's Welcome -->
   <a href="http://makeapullrequest.com">
     <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square"
       alt="PR's Welcome" />
