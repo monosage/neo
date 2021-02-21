@@ -1,41 +1,41 @@
-# Path to oh-my-zsh installation.
-export ZSH=~/.oh-my-zsh
 
+######### oh-my-zsh
+export ZSH=~/.oh-my-zsh
 # Name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 ZSH_THEME="spaceship"
+plugins=(git node brew tmux)
+source $ZSH/oh-my-zsh.sh
+export LANG=en_US.UTF-8
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+######### end oh-my-zsh
 
-alias uuid='uuidgen | tr "[:upper:]" "[:lower:]" | pbcopy && pbpaste && echo'
 
-# TMUX
+######### TMUX
 # Automatically start tmux
 ZSH_TMUX_AUTOSTART=false
-
 # Automatically connect to a previous session if it exists
 ZSH_TMUX_AUTOCONNECT=true
-
 # Enable command auto-correction.
 ENABLE_CORRECTION="true"
-
 # Display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
-
 # Disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
 DISABLE_UNTRACKED_FILES_DIRTY="true"
+######## END TMUX
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git node brew tmux)
+
 
 # User configuration
 # Hide user@hostname if it's expected default user
 DEFAULT_USER="ctay20"
 prompt_context(){}
 
+
+############ FZE setup
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # Setting rg as the default source for fzf
 export FZF_DEFAULT_COMMAND='rg --files'
 
@@ -113,6 +113,8 @@ fgr() {
   fi
 }
 
+########### End FZF
+
 kill-port() {
   port=$1
 
@@ -139,54 +141,53 @@ kill-port() {
     fi
   done
 }
-
-# Enabled zsh-autosuggestions
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
 # Set default editor to nvim
 export EDITOR='nvim'
 
 # Enabled true color support for terminals
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
 
-# Aliases
-alias vim="nvim"
+
+##########  Aliases
+alias ls="colorls --sd"
 alias top="vtop --theme=wizard"
-# alias ls="colorls -lA --sd"
+alias vim="nvim"
+alias zshconfig="mate ~/.zshrc"
+alias ohmyzsh="mate ~/.oh-my-zsh"
+alias uuid='uuidgen | tr "[:upper:]" "[:lower:]" | pbcopy && pbpaste && echo'
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+########## end Aliases
 
-source $ZSH/oh-my-zsh.sh
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# [.bash_profile]
-# Setup Golang
-GOVERSION=$(brew info go | head -n 1 | awk {'print$3'})
-export GOROOT=$(brew --prefix)/Cellar/go/$GOVERSION/libexec
-export GOPATH=$HOME/Developer/go
-export PATH=$PATH:$GOPATH/bin
-
-
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-export PATH="/usr/local/opt/ruby/bin:$PATH"
-
-
-#POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
-
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
-
-
+######### NODE
 export NVM_DIR="$HOME/.nvm"
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completionexport NVM_DIR="$HOME/.nvm"
   [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
   [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 nvm use 12.14.0
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
+########### END NODE
+
+######## RUBY
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+# Don't remove this we need to for nvm coc
+export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+export GEM_HOME="$HOME/.gem"
+######## END RUBY
+
+########### JAVA
+export JAVA_HOME=$(/usr/libexec/java_home -v 11)
+setjdk() {
+ export JAVA_HOME=$(/usr/libexec/java_home -v $1)
+}
+
+## The Software Development Kit Manager for java
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+########## END JAVA
+
+########### Google cloud
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '~/neo/google-cloud-sdk/path.zsh.inc' ]; then . '~/neo/google-cloud-sdk/path.zsh.inc'; fi
 
@@ -194,9 +195,6 @@ if [ -f '~/neo/google-cloud-sdk/path.zsh.inc' ]; then . '~/neo/google-cloud-sdk/
 if [ -f '~/neo//google-cloud-sdk/completion.zsh.inc' ]; then . '~/neo/google-cloud-sdk/completion.zsh.inc'; fi
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
 
+########### END Google cloud
 
-export JAVA_HOME=$(/usr/libexec/java_home -v 11)
-setjdk() {
- export JAVA_HOME=$(/usr/libexec/java_home -v $1)
-}
 
