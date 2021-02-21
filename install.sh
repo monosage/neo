@@ -64,6 +64,8 @@ jprint 2  'Installing skdman for java.'
 echo "---------------------------------------------------------"
 
 curl -s "https://get.sdkman.io" | bash
+sdk install java
+sdk install gradle
 
 echo "---------------------------------------------------------"
 jprint 2  'Installing googld-could-sdk'

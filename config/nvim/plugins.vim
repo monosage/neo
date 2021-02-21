@@ -51,6 +51,7 @@ Plug 'matze/vim-move'
 "=== Project ==="
 Plug 'thaerkh/vim-workspace'
 
+Plug 'mhinz/vim-startify'
 " Tmux/Neovim movement integration
 Plug 'liuchengxu/vista.vim'
 " Code folding
