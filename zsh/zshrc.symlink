@@ -85,7 +85,7 @@ fgb() {
 ftm() {
   [[ -n "$TMUX" ]] && change="switch-client" || change="attach-session"
   if [ $1 ]; then
-    tmux $change -t "$1" 2>/dev/null || (tmux new-session -d -s $1 && tmux $change -t "$1" \; split-window -h -p 30 \; split-window -v \; split-window -v \; select-pane -t 1 \; send-keys 'vim .' C-m \;); return
+    tmux $change -t "$1" 2>/dev/null || (tmux new-session -d -s $1 && tmux $change -t "$1" \; split-window -h -p 30 \; split-window -v \; split-window -v \; select-pane -t 1 \; send-keys 'fo' C-m \;); return
   fi
   session=$(tmux list-sessions -F "#{session_name}" 2>/dev/null | fzf --exit-0) &&  tmux $change -t "$session" || echo "No sessions found."
 }
@@ -157,17 +157,7 @@ alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 
 source $ZSH/oh-my-zsh.sh
 
-# Set Spaceship as prompt
-autoload -U promptinit; promptinit
-prompt spaceship
-SPACESHIP_PACKAGE_SHOW=false
-SPACESHIP_NODE_SHOW=false
-SPACESHIP_GIT_STATUS_STASHED=''
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
- export NVM_DIR="$HOME/.nvm"
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
 
 # [.bash_profile]
 # Setup Golang
@@ -177,36 +167,36 @@ export GOPATH=$HOME/Developer/go
 export PATH=$PATH:$GOPATH/bin
 
 
-nvm use node
-
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/dbuddha/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/dbuddha/Downloads/google-cloud-sdk/path.zsh.inc'; fi
 
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/dbuddha/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/dbuddha/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-
-
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/dbuddha/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/dbuddha/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/dbuddha/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/dbuddha/google-cloud-sdk/completion.zsh.inc'; fi
-POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
+#POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-export PATH="/usr/local/opt/ruby/bin:$PATH"
 
-# Set Spaceship ZSH as a prompt
-autoload -U promptinit; promptinit
-prompt spaceship
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completionexport NVM_DIR="$HOME/.nvm"
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+nvm use 12.14.0
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '~/neo/google-cloud-sdk/path.zsh.inc' ]; then . '~/neo/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '~/neo//google-cloud-sdk/completion.zsh.inc' ]; then . '~/neo/google-cloud-sdk/completion.zsh.inc'; fi
+export PATH="/usr/local/opt/openjdk/bin:$PATH"
+
+
+export JAVA_HOME=$(/usr/libexec/java_home -v 11)
+setjdk() {
+ export JAVA_HOME=$(/usr/libexec/java_home -v $1)
+}
 

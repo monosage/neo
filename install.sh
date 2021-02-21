@@ -60,6 +60,18 @@ for i in "${packages[@]}"; do
 done
 
 echo "---------------------------------------------------------"
+jprint 2  'Installing skdman for java.'
+echo "---------------------------------------------------------"
+
+curl -s "https://get.sdkman.io" | bash
+
+echo "---------------------------------------------------------"
+jprint 2  'Installing googld-could-sdk'
+echo "---------------------------------------------------------"
+
+curl https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-328.0.0-darwin-x86_64.tar.gz | tar -xz
+
+echo "---------------------------------------------------------"
 jprint 2  'Setup NVM & Node.'
 echo "---------------------------------------------------------"
 

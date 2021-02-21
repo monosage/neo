@@ -17,3 +17,7 @@ config/*
 
 backup/
 *.log
+
+.undodir
+
+google-cloud-sdk/

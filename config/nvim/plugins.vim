@@ -72,9 +72,9 @@ let g:coc_global_extensions = [
         \'coc-json',
         \'coc-yank',
         \'coc-prettier',
-        \'coc-explorer'
+        \'coc-explorer',
+        \'coc-java'
         \]
-
 
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -93,14 +93,18 @@ Plug 'Asheq/close-buffers.vim'
 " Multiline select <C-n>
 Plug 'terryma/vim-multiple-cursors'
 
+" Marks
+Plug 'kshenoy/vim-signature'
+
 "=== Languages ==="
 "TypeScript & JavaScript
 Plug 'HerringtonDarkholme/yats.vim'
 "HTML & CSS
 Plug 'mattn/emmet-vim'
+Plug 'jparise/vim-graphql'
 
 "=== Games ==="
-Plug 'ThePrimeagen/vim-be-good'
+"Plug 'ThePrimeagen/vim-be-good'
 
 call plug#end()
 

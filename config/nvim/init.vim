@@ -114,15 +114,15 @@ noremap <leader>c :nohl<CR>
 " Used when you want to paste over something without it getting copied to
 " Vim's default buffer
 vnoremap <leader>P "_dP
-noremap <leader>p :Format<CR>
+noremap <leader>p :Format<CR> <bar> :CocCommand eslint.executeAutofix<CR>
 
 "}}}
+
 
 " PLUGIN SETUP -------------------------------------------{{{
 " === vim-workspace ==="
 let g:workspace_session_name = 'Session.vim'
 let g:workspace_session_directory = $HOME . '/.vim/sessions/'
-let g:workspace_autosave_always = 1
 
 " === vim-move === "
 let g:move_key_modifier = 'C'
@@ -138,6 +138,8 @@ map <leader>e <Plug>(easymotion-bd-w)
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
+" :CocDisable
+" :CocEnable
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? coc#_select_confirm() :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
@@ -210,6 +212,18 @@ xmap af <Plug>(coc-funcobj-a)
 omap if <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
 
+" Run jest for current project
+command! -nargs=0 Jest :call  CocAction('runCommand', 'jest.projectTest')
+
+" Run jest for current file
+command! -nargs=0 JestCurrent :call  CocAction('runCommand', 'jest.fileTest', ['%'])
+nnoremap <leader>ta  :call  CocAction('runCommand', 'jest.fileTest', ['%'])<CR>
+" Run jest for current test
+nnoremap <leader>te :call CocAction('runCommand', 'jest.singleTest')<CR>
+
+" Init jest in current cwd, require global jest command exists
+command! JestInit :call CocAction('runCommand', 'jest.init')
+
 " Use <TAB> for selections ranges.
 " NOTE: Requires 'textDocument/selectionRange' support from the language server.
 " coc-tsserver, coc-python are the examples of servers that support it.
@@ -263,6 +277,13 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 "}}}
+
+" Git ----------------------------------------------------{{{
+" Fugitive Conflict Resolution
+nnoremap <leader>gd :Gvdiff<CR>
+nnoremap gdh :diffget //2<CR>
+nnoremap gdl :diffget //3<CR>
+" }}}}
 
 " Tabs/Buffers--------------------------------------------------{{{
 ""This allows buffers to be hidden if you've modified a buffer.
@@ -333,7 +354,8 @@ endfunction
 "}}}
 
 " Vista.vim ------------------------- {{{
-
+let g:fzf_layout = { 'down': '~100%' }
+let g:fzf_preview_window = ['up:50%', 'ctrl-/']
 noremap <c-t> :silent! Vista finder coc<CR>
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 let g:vista_default_executive = 'ctags'

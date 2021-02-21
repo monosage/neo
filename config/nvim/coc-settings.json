@@ -54,6 +54,11 @@
   "snippets.userSnippetsDirectory": "~/.config/nvim/snippets",
   "typescript.preferences.importModuleSpecifier": "relative",
   "explorer.icon.enableNerdfont": true,
+  "explorer.width": 50,
+  "explorer.file.showHiddenFiles": true,
+  "explorer.file.child.template": "[git | 2] [selection | clip | 1] [indent][icon | 1] [diagnosticError & 1][filename omitCenter 1][modified][readonly] [linkIcon & 1][link growRight 1 omitCenter 5]",
+  "explorer.buffer.root.template": "[icon & 1] OPEN EDITORS",
+  "explorer.file.root.template": "[icon & 1] PROJECT ([root])",
   "diagnostic.signOffset": 1,
   "diagnostic.errorSign": "×",
   "diagnostic.warningSign": "»",
@@ -65,6 +70,7 @@
   "diagnostic.checkCurrentLine": true,
   "diagnostic.virtualTextPrefix": " ❯❯❯ ",
   "diagnostic.virtualText": false,
+  "diagnostic.maxWindowHeight": 30,
   "codeLens.enable": true,
   "list.previewHighlightGroup": "Statement",
   "list.nextKeymap": "<C-e>",
@@ -86,6 +92,7 @@
   "git.changeRemovedSign.text": "▒",
   "git.enableGlobalStatus": false,
   "git.signOffset": 2,
-  "eslint.autoFixOnSave": true,
-  "eslint.packageManager": "yarn"
+  "eslint.autoFixOnSave": false,
+  "eslint.packageManager": "yarn",
+  "jest.detectLeaks": true
 }
