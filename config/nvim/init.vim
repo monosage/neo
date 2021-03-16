@@ -114,7 +114,13 @@ noremap <leader>c :nohl<CR>
 " Used when you want to paste over something without it getting copied to
 " Vim's default buffer
 vnoremap <leader>P "_dP
-noremap <leader>p :Format<CR> <bar> :CocCommand eslint.executeAutofix<CR>
+"noremap <leader>p :Format<CR> <bar> :CocCommand eslint.executeAutofix<CR>
+command! -nargs=0 Format :call CocAction('format')
+noremap <leader>p :Format<CR>
+
+"noremap <leader>p <Plug>(coc-format)<CR>
+
+"xmap <leader>f  <Plug>(coc-format-selected)
 
 "}}}
 
@@ -276,6 +282,20 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+"""" which key
+let g:mapleader = ','
+let g:maplocalleader = "\<Space>"
+nnoremap <silent> <leader>      :<c-u>WhichKey ','<CR>
+nnoremap <silent> <localleader> :<c-u>WhichKey  '<Space>'<CR>
+let g:which_key_sep = '→'
+let g:which_key_use_floating_win = 0
+" which key colors
+highlight default link WhichKey          Operator
+highlight default link WhichKeySeperator DiffAdded
+highlight default link WhichKeyGroup     Identifier
+highlight default link WhichKeyDesc      Function
+
 "}}}
 
 " Git ----------------------------------------------------{{{
@@ -406,6 +426,10 @@ nmap <leader>n :CocCommand explorer  --quit-on-open <CR>
 "let g:netrw_fastbrowse = 0
 
 "}}}
+
+" CoCJava -------------------------------{{{
+  nmap <leader>cw :CocCommand java.clean.workspace <CR>
+" }}}
 
 "Startify -----------------------------------{{{
 

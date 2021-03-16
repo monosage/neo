@@ -25,6 +25,10 @@ Plug 'mhartington/oceanic-next'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+" Java sysntax highlight"
+Plug 'uiiaoo/java-syntax.vim'
+highlight link JavaIdentifier NONE
+
 "===Code===
 Plug 'tpope/vim-surround'
 " Auto reload file
@@ -50,6 +54,7 @@ Plug 'matze/vim-move'
 
 "=== Project ==="
 Plug 'thaerkh/vim-workspace'
+Plug 'liuchengxu/vim-which-key'
 
 Plug 'mhinz/vim-startify'
 " Tmux/Neovim movement integration
