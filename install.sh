@@ -124,7 +124,7 @@ jprint 2  'Installing system fonts.'
 echo "---------------------------------------------------------"
 
 brew tap homebrew/cask-fonts
-brew cask install font-hack-nerd-font
+brew install --cask font-hack-nerd-font
 
 # Create backup folder if it doesn't exist
 mkdir -p ~/.local/share/nvim/backup
