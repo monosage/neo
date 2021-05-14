@@ -16,6 +16,7 @@ if [ -f "$brew" ]; then
   echo "---------------------------------------------------------"
   jprint 2  'Homebrew is installed.'
   echo "---------------------------------------------------------"
+  brew update
 else
   echo "---------------------------------------------------------"
   jprint 3 'Installing Homebrew. Homebrew requires osx command lines tools, please download xcode first'
